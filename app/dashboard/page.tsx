@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth'
 import { useRouter } from "next/navigation"
 import UserManager from '../config'
 
-const page = () => {
+const DashBoard = () => {
     const router = useRouter();
     const auth = useAuth();
     if (!auth) {
@@ -16,4 +16,4 @@ const page = () => {
     )
 }
 
-export default page
+export default DashBoard

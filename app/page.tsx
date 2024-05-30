@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { UserManager } from "./config";
 import { set, z, ZodError } from 'zod'
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
 
   const [errInput, setErrInput] = useState<string>("");
   const [otpSent, setOtpSent] = useState<boolean>(false);
+  const router = useRouter();
 
   const emailRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -47,11 +49,15 @@ export default function Home() {
   }
 
   const verifyOtp = async (e: any) => {
-    e.preventDefault;
+    e.preventDefault();
     if (otpRef.current) {
       const otp = otpRef.current.value;
       const res = await UserManager.getInstance().verifyOtp(otp);
-      console.log(res);
+      if (res?.status == 'success') {
+        router.push('/dashboard')
+      } else {
+        window.alert("Invalid OTP")
+      }
     }
   }
 
@@ -108,8 +114,7 @@ export default function Home() {
               </form>
 
               <p className="mt-10 text-center text-sm text-gray-500">
-                Already have a account?
-                <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Sign in</a>
+                Otp Valid upto 15 minutes
               </p>
             </div>
           </div>

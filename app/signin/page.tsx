@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import UserManager from '../config';
 import Link from 'next/link';
 
-const page = () => {
+const SignIn = () => {
     const emailRef = useRef<HTMLInputElement>(null);
     const otpRef = useRef<HTMLInputElement>(null);
 
@@ -45,7 +45,7 @@ const page = () => {
                             <button onClick={sendOtp} className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Send OTP</button>
                         </div>
                         <p className="mt-10 text-center text-sm text-gray-500">
-                            Don't have a account?
+                            Don&#39;t have a account?
                             <Link className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500" href={"/"}> Sign up</Link>
                         </p>
                     </div>
@@ -75,4 +75,4 @@ const page = () => {
     )
 }
 
-export default page
+export default SignIn
