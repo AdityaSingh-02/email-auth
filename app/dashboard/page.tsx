@@ -1,18 +1,29 @@
 'use client'
-import React, { useEffect } from 'react'
+import { useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import { useRouter } from "next/navigation"
-import UserManager from '../config'
+import useLogout from '../hooks/useLogout'
 
 const DashBoard = () => {
     const router = useRouter();
-    const auth = useAuth();
-    if (!auth) {
-        router.push('/')
+    const [name, setName] = useState<string | undefined>('')
+    useAuth().then(res => {
+        if (res.status === 'failure') {
+            router.push('/')
+        } else {
+            setName(res?.username)
+        }
+    })
+
+    const logoutUser = () => {
+        router.push('/logout')
     }
 
     return (
-        <div>DashBoard</div>
+        <>
+            <div>DashBoard Welcome - {name}</div>
+            <button onClick={logoutUser}>Logout</button>
+        </>
     )
 }
 

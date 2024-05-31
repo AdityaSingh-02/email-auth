@@ -62,7 +62,7 @@ export class UserManager {
     async isLoggedIn() {
         try {
             const user = await this.getUser();
-            return Boolean(user);
+            return user
         } catch (error) {
             console.error("Error While checking user is logged in ", error);
             return false;

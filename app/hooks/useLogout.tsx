@@ -10,9 +10,7 @@ const useLogout = () => {
             router.push('/')
         })
     }, [])
-    return (
-        <></>
-    )
+    return <></>
 }
 
 export default useLogout
